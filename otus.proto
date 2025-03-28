@@ -1,0 +1,17 @@
+syntax = 'proto3';
+
+message User {
+  string lastname = 1;
+  string firstname = 2;
+  int32 age = 3;
+  bool isMarried = 4;
+}
+
+message Id {
+  int64 Id = 1;
+}
+
+
+service UserActions {
+  rpc RegisterUser(User) returns(Id);
+}
