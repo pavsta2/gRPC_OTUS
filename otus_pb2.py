@@ -24,7 +24,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\notus.proto\"K\n\x04User\x12\x10\n\x08lastname\x18\x01 \x01(\t\x12\x11\n\tfirstname\x18\x02 \x01(\t\x12\x0b\n\x03\x61ge\x18\x03 \x01(\x05\x12\x11\n\tisMarried\x18\x04 \x01(\x08\"\x10\n\x02Id\x12\n\n\x02Id\x18\x01 \x01(\x03\x32)\n\x0bUserActions\x12\x1a\n\x0cRegisterUser\x12\x05.User\x1a\x03.Idb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\notus.proto\"K\n\x04User\x12\x10\n\x08lastname\x18\x01 \x01(\t\x12\x11\n\tfirstname\x18\x02 \x01(\t\x12\x0b\n\x03\x61ge\x18\x03 \x01(\x05\x12\x11\n\tisMarried\x18\x04 \x01(\x08\"\x10\n\x02Id\x12\n\n\x02Id\x18\x01 \x01(\x03\x32X\n\x0bUserActions\x12\x1a\n\x0cRegisterUser\x12\x05.User\x1a\x03.Id\x12\x15\n\x07GetUser\x12\x03.Id\x1a\x05.User\x12\x16\n\nDeleteUser\x12\x03.Id\x1a\x03.Idb\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -36,5 +36,5 @@ if not _descriptor._USE_C_DESCRIPTORS:
   _globals['_ID']._serialized_start=91
   _globals['_ID']._serialized_end=107
   _globals['_USERACTIONS']._serialized_start=109
-  _globals['_USERACTIONS']._serialized_end=150
+  _globals['_USERACTIONS']._serialized_end=197
 # @@protoc_insertion_point(module_scope)

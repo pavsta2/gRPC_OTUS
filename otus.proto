@@ -14,4 +14,7 @@ message Id {
 
 service UserActions {
   rpc RegisterUser(User) returns(Id);
+  rpc GetUser(Id) returns(User);
+  rpc DeleteUser(Id) returns(Id);
 }
+

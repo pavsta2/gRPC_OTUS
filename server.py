@@ -3,7 +3,7 @@ import grpc
 from concurrent import futures
 from grpc_reflection.v1alpha import reflection
 
-import otus_pb2_grpc,  otus_pb2
+import otus_pb2_grpc, otus_pb2
 
 
 class RegisterServicer(otus_pb2_grpc.UserActionsServicer):
@@ -21,6 +21,17 @@ class RegisterServicer(otus_pb2_grpc.UserActionsServicer):
         RegisterServicer.users[user['id']] = user
         return otus_pb2.Id(Id=user['id'])
 
+    def GetUser(self, request, context):
+        user = RegisterServicer.users[request.Id]
+        return otus_pb2.User(lastname=user['lastname'],
+                             firstname=user['firstname'],
+                             age=user['age'],
+                             isMarried=user['isMarried'])
+
+    def DeleteUser(self, request, context):
+        RegisterServicer.users.pop(request.Id)
+        return otus_pb2.Id(Id=request.Id)
+
 
 def serve():
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
@@ -29,6 +40,7 @@ def serve():
     def handle_sigint(sig, frame):
         print("Caught SIGINT, shutting down server...")
         server.stop(0)
+
     signal.signal(signal.SIGINT, handle_sigint)
 
     service_names = (

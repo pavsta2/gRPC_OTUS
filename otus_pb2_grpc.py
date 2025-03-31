@@ -39,6 +39,16 @@ class UserActionsStub(object):
                 request_serializer=otus__pb2.User.SerializeToString,
                 response_deserializer=otus__pb2.Id.FromString,
                 _registered_method=True)
+        self.GetUser = channel.unary_unary(
+                '/UserActions/GetUser',
+                request_serializer=otus__pb2.Id.SerializeToString,
+                response_deserializer=otus__pb2.User.FromString,
+                _registered_method=True)
+        self.DeleteUser = channel.unary_unary(
+                '/UserActions/DeleteUser',
+                request_serializer=otus__pb2.Id.SerializeToString,
+                response_deserializer=otus__pb2.Id.FromString,
+                _registered_method=True)
 
 
 class UserActionsServicer(object):
@@ -50,12 +60,34 @@ class UserActionsServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def GetUser(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def DeleteUser(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_UserActionsServicer_to_server(servicer, server):
     rpc_method_handlers = {
             'RegisterUser': grpc.unary_unary_rpc_method_handler(
                     servicer.RegisterUser,
                     request_deserializer=otus__pb2.User.FromString,
+                    response_serializer=otus__pb2.Id.SerializeToString,
+            ),
+            'GetUser': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetUser,
+                    request_deserializer=otus__pb2.Id.FromString,
+                    response_serializer=otus__pb2.User.SerializeToString,
+            ),
+            'DeleteUser': grpc.unary_unary_rpc_method_handler(
+                    servicer.DeleteUser,
+                    request_deserializer=otus__pb2.Id.FromString,
                     response_serializer=otus__pb2.Id.SerializeToString,
             ),
     }
@@ -85,6 +117,60 @@ class UserActions(object):
             target,
             '/UserActions/RegisterUser',
             otus__pb2.User.SerializeToString,
+            otus__pb2.Id.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def GetUser(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/UserActions/GetUser',
+            otus__pb2.Id.SerializeToString,
+            otus__pb2.User.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def DeleteUser(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/UserActions/DeleteUser',
+            otus__pb2.Id.SerializeToString,
             otus__pb2.Id.FromString,
             options,
             channel_credentials,
